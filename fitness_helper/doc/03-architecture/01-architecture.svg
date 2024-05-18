@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="841pt" height="595pt" viewBox="0 0 841 595" version="1.1">
+    <defs>
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 591)">
+        <title>G</title>
+        <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-591 837,-591 837,4 -4,4"/>
+        <!-- User Interface -->
+        <g id="node1" class="node">
+            <title>User Interface</title>
+            <path fill="#f2e5bc" stroke="#000000" d="M297,-36C297,-36 215,-36 215,-36 211,-36 207,-32 207,-28 207,-28 207,-12 207,-12 207,-8 211,-4 215,-4 215,-4 297,-4 297,-4 301,-4 305,-8 305,-12 305,-12 305,-28 305,-28 305,-32 301,-36 297,-36"/>
+            <text text-anchor="middle" x="256" y="-15.3" font-family="Times,serif" font-size="14.00">User Interface</text>
+        </g>
+        <!-- Presentation Layer -->
+        <g id="node2" class="node">
+            <title>Presentation Layer</title>
+            <path fill="#e2eaf2" stroke="#000000" d="M431,-108C431,-108 303,-108 303,-108 299,-108 295,-104 295,-100 295,-100 295,-76 295,-76 295,-72 299,-68 303,-68 303,-68 431,-68 431,-68 435,-68 439,-72 439,-76 439,-76 439,-100 439,-100 439,-104 435,-108 431,-108"/>
+            <text text-anchor="middle" x="367" y="-87.3" font-family="Times,serif" font-size="14.00">Presentation Layer</text>
+        </g>
+        <!-- User Interface&#45;&gt;Presentation Layer -->
+        <g id="edge1" class="edge">
+            <title>User Interface&#45;&gt;Presentation Layer</title>
+            <path fill="none" stroke="#000000" d="M305.17,-38.9C315.9,-49.29 329.11,-62.36 340.56,-73.44"/>
+            <polygon fill="#000000" stroke="#000000" points="338.14,-76.01 347.62,-80.97 343.28,-71.22 338.14,-76.01"/>
+        </g>
+        <!-- Application Layer -->
+        <g id="node3" class="node">
+            <title>Application Layer</title>
+            <path fill="#e2eaf2" stroke="#000000" d="M580,-180C580,-180 406,-180 406,-180 402,-180 398,-176 398,-172 398,-172 398,-148 398,-148 398,-144 402,-140 406,-140 406,-140 580,-140 580,-140 584,-140 588,-144 588,-148 588,-148 588,-172 588,-172 588,-176 584,-180 580,-180"/>
+            <text text-anchor="middle" x="493" y="-159.3" font-family="Times,serif" font-size="14.00">Application Layer</text>
+        </g>
+        <!-- Presentation Layer&#45;&gt;Application Layer -->
+        <g id="edge2" class="edge">
+            <title>Presentation Layer&#45;&gt;Application Layer</title>
+            <path fill="none" stroke="#000000" d="M411.83,-108.09C429.81,-118.02 452.53,-130.67 471.11,-141.06"/>
+            <polygon fill="#000000" stroke="#000000" points="469.39,-144.14 479.85,-146.26 473.15,-138.18 469.39,-144.14"/>
+        </g>
+        <!-- Domain Layer -->
+        <g id="node4" class="node">
+            <title>Domain Layer</title>
+            <path fill="#e2eaf2" stroke="#000000" d="M580,-252C580,-252 406,-252 406,-252 402,-252 398,-248 398,-244 398,-244 398,-220 398,-220 398,-216 402,-212 406,-212 406,-212 580,-212 580,-212 584,-212 588,-216 588,-220 588,-220 588,-244 588,-244 588,-248 584,-252 580,-252"/>
+            <text text-anchor="middle" x="493" y="-231.3" font-family="Times,serif" font-size="14.00">Domain Layer</text>
+        </g>
+        <!-- Application Layer&#45;&gt;Domain Layer -->
+        <g id="edge3" class="edge">
+            <title>Application Layer&#45;&gt;Domain Layer</title>
+            <path fill="none" stroke="#000000" d="M493,-180.07C493,-188.98 493,-200.8 493,-211.49"/>
+            <polygon fill="#000000" stroke="#000000" points="489.5,-211.67 493,-221.67 496.5,-211.67 489.5,-211.67"/>
+        </g>
+        <!-- Data Access Layer -->
+        <g id="node5" class="node">
+            <title>Data Access Layer</title>
+            <path fill="#e2eaf2" stroke="#000000" d="M725,-324C725,-324 513,-324 513,-324 509,-324 505,-320 505,-316 505,-316 505,-292 505,-292 505,-288 509,-284 513,-284 513,-284 725,-284 725,-284 729,-284 733,-288 733,-292 733,-292 733,-316 733,-316 733,-320 729,-324 725,-324"/>
+            <text text-anchor="middle" x="619" y="-303.3" font-family="Times,serif" font-size="14.00">Data Access Layer</text>
+        </g>
+        <!-- Domain Layer&#45;&gt;Data Access Layer -->
+        <g id="edge4" class="edge">
+            <title>Domain Layer&#45;&gt;Data Access Layer</title>
+            <path fill="none" stroke="#000000" d="M536.33,-252.09C561.04,-263.12 592.92,-277.98 617.02,-289.12"/>
+            <polygon fill="#000000" stroke="#000000" points="615.46,-292.25 625.94,-293.72 618.81,-286.12 615.46,-292.25"/>
+        </g>
+        <!-- Database -->
+        <g id="node6" class="node">
+            <title>Database</title>
+            <ellipse fill="#f2d1b3" stroke="#000000" cx="619" cy="-396" rx="50.09" ry="18"/>
+            <text text-anchor="middle" x="619" y="-392.3" font-family="Times,serif" font-size="14.00">Database</text>
+        </g>
+        <!-- Data Access Layer&#45;&gt;Database -->
+        <g id="edge5" class="edge">
+            <title>Data Access Layer&#45;&gt;Database</title>
+            <path fill="none" stroke="#000000" d="M619,-324.07C619,-335.71 619,-351.29 619,-363.58"/>
+            <polygon fill="#000000" stroke="#000000" points="615.5,-363.86 619,-373.86 622.5,-363.86 615.5,-363.86"/>
+        </g>
+    </g>
+</svg>
