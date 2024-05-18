@@ -10,3 +10,12 @@ subprojects {
     group = rootProject.group
     version = rootProject.version
 }
+
+tasks {
+    arrayOf("build", "clean", "check").forEach { task ->
+        create(task) {
+            group = "build"
+            dependsOn(subprojects.map { project -> project.getTasksByName(task, false) })
+        }
+    }
+}

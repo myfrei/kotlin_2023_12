@@ -37,22 +37,22 @@ internal class BuildPluginMultiplatform : Plugin<Project> {
 @Suppress("LongMethod", "MagicNumber")
 private fun KotlinMultiplatformExtension.configureTargets(project: Project) {
     val libs = project.the<LibrariesForLibs>()
-    targets {
-        jvmToolchain {
-            languageVersion.set(JavaLanguageVersion.of(libs.versions.jvm.target.get()))
-        }
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(libs.versions.jvm.target.get()))
+    }
 
-        jvm {
-            compilations.configureEach {
-                compilerOptions.configure {
-                    jvmTarget.set(JvmTarget.valueOf("JVM_${libs.versions.jvm.target.get()}"))
-                }
+    jvm {
+        compilations.configureEach {
+            compilerOptions.configure {
+                jvmTarget.set(JvmTarget.valueOf("JVM_${libs.versions.jvm.target.get()}"))
             }
         }
-        linuxX64()
-        macosArm64()
-        macosX64()
     }
+
+    linuxX64()
+    macosArm64()
+    macosX64()
+
     project.tasks.withType(JavaCompile::class.java) {
         sourceCompatibility = libs.versions.jvm.target.get()
         targetCompatibility = libs.versions.jvm.target.get()
