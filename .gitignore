@@ -1,7 +1,7 @@
 .idea
 .gradle/
 /build/
-
+.env
 !**/src/**/build
 !**/test/**/build
 !**/src/test/**/build/

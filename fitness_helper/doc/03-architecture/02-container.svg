@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="721pt" height="501pt" viewBox="0 0 721 501" version="1.1">
+    <defs>
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 497)">
+        <title>G</title>
+        <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-497 717,-497 717,4 -4,4"/>
+        <!-- Clients -->
+        <g id="node1" class="node">
+            <title>Clients</title>
+            <ellipse fill="#f2e2d9" stroke="#000000" cx="55" cy="-475" rx="35.1959" ry="18"/>
+            <text text-anchor="middle" x="55" y="-470.8" font-family="Times,serif" font-size="14.00">Clients</text>
+        </g>
+        <!-- API Gateway -->
+        <g id="node2" class="node">
+            <title>API Gateway</title>
+            <path fill="#e2eaf2" stroke="#000000" d="M178,-447.5C178,-447.5 105,-447.5 105,-447.5 99,-447.5 93,-441.5 93,-435.5 93,-435.5 93,-423.5 93,-423.5 93,-417.5 99,-411.5 105,-411.5 105,-411.5 178,-411.5 178,-411.5 184,-411.5 190,-417.5 190,-423.5 190,-423.5 190,-435.5 190,-435.5 190,-441.5 184,-447.5 178,-447.5"/>
+            <text text-anchor="middle" x="141.5" y="-426.3" font-family="Times,serif" font-size="14.00">API Gateway</text>
+        </g>
+        <!-- Clients&#45;&gt;API Gateway -->
+        <g id="edge1" class="edge">
+            <title>Clients&#45;&gt;API Gateway</title>
+            <path fill="none" stroke="#000000" d="M84.88,-460.81C98.56,-455.35 114.84,-448.74 128.69,-443.18"/>
+            <polygon fill="#000000" stroke="#000000" points="130.09,-446.4 138.23,-439.54 127.62,-439.83 130.09,-446.4"/>
+        </g>
+        <!-- Nutrition Microservice -->
+        <g id="node3" class="node">
+            <title>Nutrition Microservice</title>
+            <ellipse fill="#e2d4bd" stroke="#000000" cx="353" cy="-450" rx="90.9839" ry="18"/>
+            <text text-anchor="middle" x="353" y="-445.8" font-family="Times,serif" font-size="14.00">Nutrition Microservice</text>
+        </g>
+        <!-- API Gateway&#45;&gt;Nutrition Microservice -->
+        <g id="edge2" class="edge">
+            <title>API Gateway&#45;&gt;Nutrition Microservice</title>
+            <path fill="none" stroke="#000000" d="M190.35,-436.16C220.49,-440.94 264.52,-447.94 300.56,-453.6"/>
+            <polygon fill="#000000" stroke="#000000" points="300.28,-457.09 310.67,-454.98 301.24,-450.17 300.28,-457.09"/>
+        </g>
+        <!-- Workouts Microservice -->
+        <g id="node4" class="node">
+            <title>Workouts Microservice</title>
+            <ellipse fill="#e2d4bd" stroke="#000000" cx="553" cy="-378" rx="90.9839" ry="18"/>
+            <text text-anchor="middle" x="553" y="-373.8" font-family="Times,serif" font-size="14.00">Workouts Microservice</text>
+        </g>
+        <!-- API Gateway&#45;&gt;Workouts Microservice -->
+        <g id="edge3" class="edge">
+            <title>API Gateway&#45;&gt;Workouts Microservice</title>
+            <path fill="none" stroke="#000000" d="M190.35,-423.29C236.88,-418.83 319.39,-410.51 394,-405 435.59,-401.63 482.93,-396.83 520.1,-392.84"/>
+            <polygon fill="#000000" stroke="#000000" points="520.67,-396.3 530.21,-391.71 519.89,-389.34 520.67,-396.3"/>
+        </g>
+        <!-- User Microservice -->
+        <g id="node5" class="node">
+            <title>User Microservice</title>
+            <ellipse fill="#e2d4bd" stroke="#000000" cx="353" cy="-378" rx="72.287" ry="18"/>
+            <text text-anchor="middle" x="353" y="-373.8" font-family="Times,serif" font-size="14.00">User Microservice</text>
+        </g>
+        <!-- API Gateway&#45;&gt;User Microservice -->
+        <g id="edge4" class="edge">
+            <title>API Gateway&#45;&gt;User Microservice</title>
+            <path fill="none" stroke="#000000" d="M190.35,-421.84C230.28,-416.45 290.38,-407.97 328.14,-402.34"/>
+            <polygon fill="#000000" stroke="#000000" points="328.84,-405.78 338.22,-400.81 327.83,-398.86 328.84,-405.78"/>
+        </g>
+        <!-- Database -->
+        <g id="node6" class="node">
+            <title>Database</title>
+            <ellipse fill="#f2d1b3" stroke="#000000" cx="353" cy="-306" rx="43.5923" ry="18"/>
+            <text text-anchor="middle" x="353" y="-301.8" font-family="Times,serif" font-size="14.00">Database</text>
+        </g>
+        <!-- Nutrition Microservice&#45;&gt;Database -->
+        <g id="edge5" class="edge">
+            <title>Nutrition Microservice&#45;&gt;Database</title>
+            <path fill="none" stroke="#000000" d="M353,-431.7C353,-420.85 353,-406.92 353,-395.1"/>
+            <polygon fill="#000000" stroke="#000000" points="356.5,-395.1 353,-385.1 349.5,-395.1 356.5,-395.1"/>
+        </g>
+        <!-- Workouts Microservice&#45;&gt;Database -->
+        <g id="edge7" class="edge">
+            <title>Workouts Microservice&#45;&gt;Database</title>
+            <path fill="none" stroke="#000000" d="M515.33,-362.77C487.63,-350.55 443.85,-332.03 411.52,-318.94"/>
+            <polygon fill="#000000" stroke="#000000" points="412.61,-315.59 402.01,-315.23 409.89,-322.06 412.61,-315.59"/>
+        </g>
+        <!-- User Microservice&#45;&gt;Database -->
+        <g id="edge6" class="edge">
+            <title>User Microservice&#45;&gt;Database</title>
+            <path fill="none" stroke="#000000" d="M353,-359.7C353,-348.85 353,-334.92 353,-323.1"/>
+            <polygon fill="#000000" stroke="#000000" points="356.5,-323.1 353,-313.1 349.5,-323.1 356.5,-323.1"/>
+        </g>
+        <!-- Mobile App -->
+        <g id="node7" class="node">
+            <title>Mobile App</title>
+            <ellipse fill="#f2d9e6" stroke="#000000" cx="55" cy="-306" rx="46.2923" ry="18"/>
+            <text text-anchor="middle" x="55" y="-301.8" font-family="Times,serif" font-size="14.00">Mobile App</text>
+        </g>
+        <!-- Mobile App&#45;&gt;API Gateway -->
+        <g id="edge8" class="edge">
+            <title>Mobile App&#45;&gt;API Gateway</title>
+            <path fill="none" stroke="#000000" d="M72.37,-322.56C87.29,-335.98 109.19,-355.37 125.28,-369.55"/>
+            <polygon fill="#000000" stroke="#000000" points="123.01,-372.27 132.79,-376.52 127.99,-367.32 123.01,-372.27"/>
+        </g>
+        <!-- Web App -->
+        <g id="node8" class="node">
+            <title>Web App</title>
+            <ellipse fill="#f2d9e6" stroke="#000000" cx="55" cy="-234" rx="39.8959" ry="18"/>
+            <text text-anchor="middle" x="55" y="-229.8" font-family="Times,serif" font-size="14.00">Web App</text>
+        </g>
+        <!-- Web App&#45;&gt;API Gateway -->
+        <g id="edge9" class="edge">
+            <title>Web App&#45;&gt;API Gateway</title>
+            <path fill="none" stroke="#000000" d="M72.46,-250.77C86.85,-263.78 107.67,-281.98 123.88,-295.61"/>
+            <polygon fill="#000000" stroke="#000000" points="121.48,-298.18 131.08,-302.68 126.47,-293.22 121.48,-298.18"/>
+        </g>
+    </g>
+</svg>
