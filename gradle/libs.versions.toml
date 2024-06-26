@@ -1,28 +1,40 @@
 [versions]
-kotlin = "1.9.22"
+kotlin = "1.9.23"
 kotlinx-datetime = "0.5.0"
-kotlinx-coroutines = "1.7.3"
+kotlinx-serialization = "1.6.3"
+coroutines = "1.8.0"
 
 binaryCompabilityValidator = "0.13.2"
-foojay-resolver = "0.8.0"
 
-okhttp3 = "4.12.0"
+jvm-compiler = "17"
+jvm-language = "17"
+
+openapi-generator = "7.3.0"
 jackson = "2.16.1"
 
-# BASE
-jvm-target = "17"
+testcontainers = "1.19.7"
+muschko = "9.4.0"
 
 [libraries]
-plugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+plugin-kotlin = {module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin"}
 plugin-binaryCompatibilityValidator = { module = "org.jetbrains.kotlinx:binary-compatibility-validator", version.ref = "binaryCompabilityValidator" }
-kotlin-test = {module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin"}
-kotlinx-datetime = {module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime"}
-kotlinx-coroutines-core = {module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines"}
-kotlinx-coroutines-test = {module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines"}
-okhttp3 = {module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp3"}
-jackson-module-kotlin = {module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson"}
+jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
+jackson-datatype = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 
 [plugins]
-kotlin-multiplatform = {id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin"}
+kotlin-multiplatform = {id = "org.jetbrains.kotlin.multiplatform", version.ref  = "kotlin"}
 kotlin-jvm = {id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
-foojay-resolver-convention = {id = "org.gradle.toolchains.foojay-resolver-convention", version.ref = "foojay-resolver"}
+openapi-generator = { id = "org.openapi.generator", version.ref = "openapi-generator" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+
+#testcontainers-core = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
+#testcontainers-rabbitmq = { module = "org.testcontainers:rabbitmq", version.ref = "testcontainers" }
+#testcontainers-postgres = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+#testcontainers-cassandra = { module = "org.testcontainers:cassandra", version.ref = "testcontainers" }
+
+# Docker
+muschko-remote = { id = "com.bmuschko.docker-remote-api", version.ref = "muschko" }
+muschko-java = { id = "com.bmuschko.docker-java-application", version.ref = "muschko" }

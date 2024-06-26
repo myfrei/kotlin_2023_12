@@ -1,10 +1,6 @@
 rootProject.name = "fitness_helper"
 
 dependencyResolutionManagement {
-    repositories {
-        mavenCentral()
-        gradlePluginPortal()
-    }
     versionCatalogs {
         create("libs") {
             from(files("../gradle/libs.versions.toml"))
@@ -22,4 +18,14 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+    plugins {
+        id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
+    }
 }
+
+
+
+include(":api-v1-jackson")
+include(":fh-common")
+include(":fh-v1-mappers")
+include(":fh-commonTest")

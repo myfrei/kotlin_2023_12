@@ -1,0 +1,355 @@
+openapi: 3.0.3
+info:
+  title: "Fitness Helper API"
+  description: API для Telegram-бота Fitness Helper, предоставляющего функции подсчета КБЖУ, рекомендаций по меню, расчета ИМТ и программ тренировок.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api
+
+tags:
+  - name: user
+    description: Управление пользователями
+  - name: nutrition
+    description: Учет питания
+  - name: workout
+    description: Управление тренировками
+  - name: bmi
+    description: Расчет ИМТ
+
+paths:
+  /user/register:
+    post:
+      tags:
+        - user
+      summary: Регистрация нового пользователя
+      operationId: registerUser
+      requestBody:
+        description: Данные для регистрации пользователя
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistrationRequest'
+        required: true
+      responses:
+        200:
+          description: Пользователь успешно зарегистрирован
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+
+  /user/login:
+    post:
+      tags:
+        - user
+      summary: Вход пользователя в систему
+      operationId: loginUser
+      requestBody:
+        description: Данные для входа пользователя
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLoginRequest'
+        required: true
+      responses:
+        200:
+          description: Пользователь успешно вошел в систему
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+
+  /nutrition/diary:
+    post:
+      tags:
+        - nutrition
+      summary: Добавление записи в дневник питания
+      operationId: addFoodEntry
+      requestBody:
+        description: Данные о потребленных продуктах
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FoodEntryRequest'
+        required: true
+      responses:
+        200:
+          description: Запись успешно добавлена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FoodEntryResponse'
+
+  /nutrition/calculate:
+    post:
+      tags:
+        - nutrition
+      summary: Расчет суточного потребления КБЖУ
+      operationId: calculateNutrition
+      requestBody:
+        description: Данные о пользователе для расчета потребностей
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserData'
+        required: true
+      responses:
+        200:
+          description: Результаты расчета КБЖУ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NutritionInfo'
+
+  /workout/recommendations:
+    get:
+      tags:
+        - workout
+      summary: Получение рекомендаций по тренировкам
+      operationId: getWorkoutRecommendations
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Рекомендации по тренировкам
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkoutRecommendations'
+
+  /bmi/calculate:
+    post:
+      tags:
+        - bmi
+      summary: Расчет ИМТ
+      operationId: calculateBMI
+      requestBody:
+        description: Данные о пользователе для расчета ИМТ
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserData'
+        required: true
+      responses:
+        200:
+          description: Результат расчета ИМТ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BMIResult'
+
+components:
+  schemas:
+    IRequest:
+      type: object
+      properties:
+        requestType:
+          type: string
+          description: Тип запроса
+      discriminator:
+        propertyName: requestType
+        mapping:
+          register: '#/components/schemas/UserRegistrationRequest'
+          login: '#/components/schemas/UserLoginRequest'
+          addFoodEntry: '#/components/schemas/FoodEntryRequest'
+          calculateNutrition: '#/components/schemas/UserData'
+          getWorkoutRecommendations: '#/components/schemas/WorkoutRecommendations'
+          calculateBMI: '#/components/schemas/UserData'
+
+    IResponse:
+      type: object
+      properties:
+        responseType:
+          type: string
+          description: Тип ответа
+        result:
+          $ref: '#/components/schemas/ResponseResult'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiError'
+      discriminator:
+        propertyName: responseType
+        mapping:
+          user: '#/components/schemas/UserResponse'
+          foodEntry: '#/components/schemas/FoodEntryResponse'
+          nutritionInfo: '#/components/schemas/NutritionInfo'
+          workoutRecommendations: '#/components/schemas/WorkoutRecommendations'
+          bmiResult: '#/components/schemas/BMIResult'
+
+    ResponseResult:
+      type: string
+      enum: [success, error]
+
+    UserRegistrationRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            fullName:
+              type: string
+            email:
+              type: string
+            password:
+              type: string
+            dateOfBirth:
+              type: string
+              format: date
+            gender:
+              type: string
+            height:
+              type: number
+            weight:
+              type: number
+            activityLevel:
+              type: string
+
+    UserLoginRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            email:
+              type: string
+            password:
+              type: string
+
+    FoodEntryRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            userId:
+              type: integer
+            foodName:
+              type: string
+            calories:
+              type: number
+            proteins:
+              type: number
+            fats:
+              type: number
+            carbohydrates:
+              type: number
+
+    FoodEntryResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            entryId:
+              type: integer
+            userId:
+              type: integer
+            foodName:
+              type: string
+            calories:
+              type: number
+            proteins:
+              type: number
+            fats:
+              type: number
+            carbohydrates:
+              type: number
+            timestamp:
+              type: string
+              format: date-time
+
+    UserResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            user:
+              $ref: '#/components/schemas/User'
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        fullName:
+          type: string
+        email:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        gender:
+          type: string
+        height:
+          type: number
+        weight:
+          type: number
+        activityLevel:
+          type: string
+
+    UserData:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            userId:
+              type: integer
+            weight:
+              type: number
+            height:
+              type: number
+
+    NutritionInfo:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            dailyCalories:
+              type: number
+            dailyProteins:
+              type: number
+            dailyFats:
+              type: number
+            dailyCarbohydrates:
+              type: number
+
+    WorkoutRecommendations:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            workouts:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  duration:
+                    type: number
+
+    BMIResult:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            bmi:
+              type: number
+            status:
+              type: string
+            recommendations:
+              type: string
+
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string

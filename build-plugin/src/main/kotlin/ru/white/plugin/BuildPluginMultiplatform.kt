@@ -1,3 +1,5 @@
+package ru.white.plugin
+
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -38,13 +40,13 @@ internal class BuildPluginMultiplatform : Plugin<Project> {
 private fun KotlinMultiplatformExtension.configureTargets(project: Project) {
     val libs = project.the<LibrariesForLibs>()
     jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(libs.versions.jvm.target.get()))
+        languageVersion.set(JavaLanguageVersion.of(libs.versions.jvm.language.get()))
     }
 
     jvm {
         compilations.configureEach {
             compilerOptions.configure {
-                jvmTarget.set(JvmTarget.valueOf("JVM_${libs.versions.jvm.target.get()}"))
+                jvmTarget.set(JvmTarget.valueOf("JVM_${libs.versions.jvm.compiler.get()}"))
             }
         }
     }
@@ -54,7 +56,7 @@ private fun KotlinMultiplatformExtension.configureTargets(project: Project) {
     macosX64()
 
     project.tasks.withType(JavaCompile::class.java) {
-        sourceCompatibility = libs.versions.jvm.target.get()
-        targetCompatibility = libs.versions.jvm.target.get()
+        sourceCompatibility = libs.versions.jvm.language.get()
+        targetCompatibility = libs.versions.jvm.compiler.get()
     }
 }
