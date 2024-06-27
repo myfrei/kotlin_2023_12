@@ -23,3 +23,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
+include(":api-v1-jackson")
+include(":fh-common")
+include(":fh-v1-mappers")
