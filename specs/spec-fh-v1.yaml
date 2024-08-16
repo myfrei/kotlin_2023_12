@@ -1,0 +1,414 @@
+openapi: "3.0.2"
+info:
+  title: FitnessHelper API
+  description: API для помощника с упражнениями, который позволяет хранить выполненные упражнения, распределять их по группам мышц и отслеживать, когда они были выполнены в последний раз.
+  version: "1.0"
+servers:
+  - url: https://localhost:8080
+paths:
+  /exercise/create:
+    post:
+      tags:
+        - exercise
+      summary: Create exercise
+      operationId: ExerciseCreate
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExerciseCreateRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExerciseCreateResponse'
+
+  /exercise/read:
+    post:
+      tags:
+        - exercise
+      summary: Read exercise
+      operationId: ExerciseRead
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExerciseReadRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExerciseReadResponse'
+
+  /exercise/update:
+    post:
+      tags:
+        - exercise
+      summary: Update exercise
+      operationId: ExerciseUpdate
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExerciseUpdateRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExerciseUpdateResponse'
+
+  /exercise/delete:
+    post:
+      tags:
+        - exercise
+      summary: Delete exercise
+      operationId: ExerciseDelete
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExerciseDeleteRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExerciseDeleteResponse'
+
+  /exercise/search:
+    post:
+      tags:
+        - exercise
+      summary: Search exercise
+      operationId: ExerciseSearch
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExerciseSearchRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExerciseSearchResponse'
+
+components:
+  schemas:
+
+    IRequest:
+      type: object
+      description: Базовый интерфейс для всех запросов
+      properties:
+        requestType:
+          type: string
+          description: Поле-дескриминатор для вычисления типа запроса
+          example: create
+      discriminator:
+        propertyName: requestType
+        mapping:
+          create: '#/components/schemas/ExerciseCreateRequest'
+          read:   '#/components/schemas/ExerciseReadRequest'
+          update: '#/components/schemas/ExerciseUpdateRequest'
+          delete: '#/components/schemas/ExerciseDeleteRequest'
+          search: '#/components/schemas/ExerciseSearchRequest'
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        group:
+          type: string
+        field:
+          type: string
+        message:
+          type: string
+
+    ResponseResult:
+      type: string
+      enum:
+        - success
+        - error
+
+    IResponse:
+      type: object
+      description: Базовый интерфейс для всех ответов
+      properties:
+        responseType:
+          type: string
+          description: Поле-дескриминатор для вычисления типа запроса
+          example: create
+        result:
+          $ref: '#/components/schemas/ResponseResult'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+
+      discriminator:
+        propertyName: responseType
+        mapping:
+          create: '#/components/schemas/ExerciseCreateResponse'
+          read:   '#/components/schemas/ExerciseReadResponse'
+          update: '#/components/schemas/ExerciseUpdateResponse'
+          delete: '#/components/schemas/ExerciseDeleteResponse'
+          search: '#/components/schemas/ExerciseSearchResponse'
+          init: '#/components/schemas/ExerciseInitResponse'
+
+    ExerciseId:
+      type: string
+      description: Идентификатор упражнения
+    ExerciseLock:
+      type: string
+      description: Версия оптимистичной блокировки
+
+    BaseExercise:
+      type: object
+      description: Объект описывает свойства, одинаковые для create и update
+      properties:
+        name:
+          type: string
+          description: Название упражнения
+        description:
+          type: string
+          description: Описание упражнения
+        muscleGroup:
+          $ref: '#/components/schemas/MuscleGroup'
+        lastPerformed:
+          type: string
+          format: date-time
+          description: Дата и время последнего выполнения
+        nextReminder:
+          type: string
+          format: date-time
+          description: Дата и время следующего напоминания
+        addedOn:
+          type: string
+          format: date-time
+          description: Дата и время добавления упражнения
+
+    MuscleGroup:
+      type: string
+      description: Группа мышц
+      enum:
+        - chest
+        - back
+        - legs
+        - arms
+        - shoulders
+        - abs
+
+
+    UserId:
+      type: string
+      description: Идентификатор пользователя
+
+
+    ExerciseInitResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+
+    ExerciseCreateObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseExercise'
+
+    ExerciseCreateRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/ExerciseRequestDebug'
+        - type: object
+          properties:
+            exercise:
+              $ref: '#/components/schemas/ExerciseCreateObject'
+
+    ExerciseReadObject:
+      allOf:
+        - type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ExerciseId'
+
+    ExerciseReadRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/ExerciseRequestDebug'
+        - type: object
+          properties:
+            exercise:
+              $ref: '#/components/schemas/ExerciseReadObject'
+
+    ExerciseUpdateObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseExercise'
+        - type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ExerciseId'
+            lock:
+              $ref: '#/components/schemas/ExerciseLock'
+
+    ExerciseUpdateRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/ExerciseRequestDebug'
+        - type: object
+          properties:
+            exercise:
+              $ref: '#/components/schemas/ExerciseUpdateObject'
+
+    ExerciseDeleteObject:
+      allOf:
+        - type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ExerciseId'
+            lock:
+              $ref: '#/components/schemas/ExerciseLock'
+
+    ExerciseDeleteRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/ExerciseRequestDebug'
+        - type: object
+          properties:
+            exercise:
+              $ref: '#/components/schemas/ExerciseDeleteObject'
+
+    ExerciseSearchFilter:
+      type: object
+      description: Набор фильтров для поиска
+      properties:
+        searchString:
+          type: string
+          description: Поисковая строка, которая будет искаться в упражнениях
+
+    ExerciseSearchRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/ExerciseRequestDebug'
+        - type: object
+          properties:
+            exerciseFilter:
+              $ref: '#/components/schemas/ExerciseSearchFilter'
+
+    ExerciseResponseObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseExercise'
+        - type: object
+          description: Объект, который возвращается в ответе бэкенда
+          properties:
+            id:
+              $ref: '#/components/schemas/ExerciseId'
+            ownerId:
+              $ref: '#/components/schemas/UserId'
+            lock:
+              $ref: '#/components/schemas/ExerciseLock'
+            permissions:
+              type: array
+              uniqueItems: true
+              items:
+                $ref: '#/components/schemas/ExercisePermissions'
+
+    ExercisePermissions:
+      type: string
+      description: Доступы для клиента для операций с упражнением
+      enum:
+        - read
+        - update
+        - delete
+        - remindMe
+
+    ExerciseResponseSingle:
+      allOf:
+        - type: object
+          description: Ответ с одним упражнением
+          properties:
+            exercise:
+              $ref: '#/components/schemas/ExerciseResponseObject'
+
+    ExerciseResponseMulti:
+      allOf:
+        - type: object
+          description: Ответ со списком упражнений
+          properties:
+            exercises:
+              type: array
+              items:
+                $ref: '#/components/schemas/ExerciseResponseObject'
+
+    ExerciseCreateResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/ExerciseResponseSingle'
+
+    ExerciseReadResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/ExerciseResponseSingle'
+
+    ExerciseUpdateResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/ExerciseResponseSingle'
+
+    ExerciseDeleteResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/ExerciseResponseSingle'
+
+    ExerciseSearchResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/ExerciseResponseMulti'
+
+    ExerciseRequestDebugMode:
+      type: string
+      enum:
+        - prod
+        - test
+        - stub
+
+    ExerciseRequestDebug:
+      type: object
+      properties:
+        debug:
+          $ref: '#/components/schemas/ExerciseDebug'
+
+    ExerciseDebug:
+      type: object
+      properties:
+        mode:
+          $ref: '#/components/schemas/ExerciseRequestDebugMode'
+        stub:
+          $ref: '#/components/schemas/ExerciseRequestDebugStubs'
+
+    ExerciseRequestDebugStubs:
+      type: string
+      description: Перечисления всех стабов
+      enum:
+        - success
+        - notFound
+        - badId
+        - badName
+        - badDescription
+        - cannotDelete
+        - badSearchString

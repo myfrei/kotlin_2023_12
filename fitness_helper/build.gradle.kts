@@ -11,6 +11,11 @@ subprojects {
     version = rootProject.version
 }
 
+ext {
+    val specDir = layout.projectDirectory.dir("../specs")
+    set("spec", specDir.file("spec-fh-v1.yaml").toString())
+}
+
 tasks {
     arrayOf("build", "clean", "check").forEach { task ->
         create(task) {

@@ -6,11 +6,11 @@ gradlePlugin {
     plugins {
         register("build-jvm") {
             id = "build-jvm"
-            implementationClass = "ru.white.plugin.BuildPluginJvm"
+            implementationClass = "BuildPluginJvm"
         }
         register("build-kmp") {
             id = "build-kmp"
-            implementationClass = "ru.white.plugin.BuildPluginMultiplatform"
+            implementationClass = "BuildPluginMultiplatform"
         }
     }
 }

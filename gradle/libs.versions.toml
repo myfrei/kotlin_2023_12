@@ -1,12 +1,13 @@
 [versions]
 kotlin = "1.9.22"
-kotlinx-datetime = "0.5.0"
+kotlinx-datetime = "0.6.0"
 kotlinx-coroutines = "1.7.3"
 
 binaryCompabilityValidator = "0.13.2"
 foojay-resolver = "0.8.0"
 
 okhttp3 = "4.12.0"
+openapi-generator = "7.3.0"
 jackson = "2.16.1"
 
 # BASE
@@ -21,8 +22,11 @@ kotlinx-coroutines-core = {module = "org.jetbrains.kotlinx:kotlinx-coroutines-co
 kotlinx-coroutines-test = {module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines"}
 okhttp3 = {module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp3"}
 jackson-module-kotlin = {module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson"}
+jackson-kotlin = {module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson"}
+jackson-datatype = {module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson"}
 
 [plugins]
 kotlin-multiplatform = {id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin"}
 kotlin-jvm = {id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
 foojay-resolver-convention = {id = "org.gradle.toolchains.foojay-resolver-convention", version.ref = "foojay-resolver"}
+openapi-generator = {id = "org.openapi.generator", version.ref = "openapi-generator"}
