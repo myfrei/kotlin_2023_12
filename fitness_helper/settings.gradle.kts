@@ -27,3 +27,8 @@ pluginManagement {
 include(":api-v1-jackson")
 include(":fh-common")
 include(":fh-v1-mappers")
+include(":fh-biz")
+include(":fh-stubs")
+include(":fh-app-spring")
+include(":fh-app-common")
+include(":fh-app-rabbit")
