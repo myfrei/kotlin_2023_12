@@ -15,6 +15,13 @@ data class FhContext(
     var exerciseRequest: FhExercise = FhExercise(),
     var exerciseFilterRequest: FhExerciseFilter = FhExerciseFilter(),
 
+    var exerciseValidating: FhExercise = FhExercise(),
+    var exerciseFilterValidating: FhExerciseFilter = FhExerciseFilter(),
+
+    var exerciseValidated: FhExercise = FhExercise(),
+    var exerciseFilterValidated: FhExerciseFilter = FhExerciseFilter(),
     var exerciseResponse: FhExercise = FhExercise(),
     var exercisesResponse: MutableList<FhExercise> = mutableListOf(),
+
+    var corSettings: FhCorSettings = FhCorSettings(),
 )

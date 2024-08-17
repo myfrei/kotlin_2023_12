@@ -47,7 +47,7 @@ rabbitmq-client = { module = "com.rabbitmq:amqp-client", version = "5.20.0" }
 #testcontainers
 testcontainers-core = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
 testcontainers-rabbitmq = { module = "org.testcontainers:rabbitmq", version.ref = "testcontainers" }
-cor = { module = "ru.otus.otuskotlin.laterall.libs:laterall-lib-cor" }
+cor = { module = "ru.white.fh.libs:fh-lib-cor", version = "0.0.1" }
 
 # Spring
 spring-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }

@@ -15,8 +15,14 @@ data class FhExercise(
     var ownerId: FhUserId = FhUserId.NONE,
     var visibility: FhVisibility = FhVisibility.NONE,
     var lock: FhExerciseLock = FhExerciseLock.NONE,
-    val permissionsClient: MutableSet<FhExercisePermissionClient> = mutableSetOf()
+    val permissionsClient: MutableSet<FhExercisePermissionClient> = mutableSetOf(),
+    var importance: FhExerciseImportance = FhExerciseImportance.MEDIUM,
+    var append: Instant = Instant.NONE
 ) {
+    fun deepCopy(): FhExercise = copy(
+        permissionsClient = permissionsClient.toMutableSet(),
+    )
+
     fun isEmpty() = this == NONE
 
     companion object {

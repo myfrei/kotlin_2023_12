@@ -4,10 +4,7 @@ package com.fitness.helper.stubs
 import NONE
 import com.fitness.helper.common.models.*
 import kotlinx.datetime.Instant
-import models.FhExercise
-import models.FhExerciseId
-import models.FhExercisePermissionClient
-import models.FhUserId
+import models.*
 
 object FhExerciseStubEntities {
     val EXERCISE_PUSHUP_ENTITY1: FhExercise
@@ -25,6 +22,8 @@ object FhExerciseStubEntities {
                 FhExercisePermissionClient.UPDATE,
                 FhExercisePermissionClient.DELETE,
                 FhExercisePermissionClient.REMIND,
-            )
+            ),
+            importance = FhExerciseImportance.MEDIUM,
+            append = Instant.parse("2024-01-01T00:00:00Z")
         )
 }

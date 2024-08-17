@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
 }
 
-group = "ru.white"
+group = "ru.white.fh.libs"
 version = "0.0.1"
 
 repositories {
