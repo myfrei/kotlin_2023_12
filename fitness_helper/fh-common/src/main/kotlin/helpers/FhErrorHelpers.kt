@@ -18,12 +18,16 @@ fun Throwable.asFhError(
 )
 
 inline fun FhContext.addError(vararg error: FhError) = errors.addAll(error)
+inline fun FhContext.addErrors(error: Collection<FhError>) = errors.addAll(error)
 
 inline fun FhContext.fail(error: FhError) {
     addError(error)
     state = FhState.FAILING
 }
-
+inline fun FhContext.fail(errors: Collection<FhError>) {
+    addErrors(errors)
+    state = FhState.FAILING
+}
 inline fun errorValidation(
     field: String,
     violationCode: String,
@@ -33,4 +37,13 @@ inline fun errorValidation(
     field = field,
     group = "validation",
     message = "Validation error for field $field: $description",
+)
+inline fun errorSystem(
+    violationCode: String,
+    e: Throwable,
+) = FhError(
+    code = "system-$violationCode",
+    group = "system",
+    message = "System error occurred. Our stuff has been informed, please retry later",
+    exception = e,
 )
