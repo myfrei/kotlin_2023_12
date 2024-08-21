@@ -23,10 +23,12 @@ class RabbitDirectController(
         appSettings.controllerHelper(
             {
                 val req = apiV1Mapper.readValue(message.body, IRequest::class.java)
+                println(req)
                 fromTransport(req)
             },
             {
                 val res = toTransportExercise()
+                println(res)
                 apiV1Mapper.writeValueAsBytes(res).also {
                     basicPublish(exchangeConfig.exchange, exchangeConfig.keyOut, null, it)
                 }

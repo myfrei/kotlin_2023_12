@@ -104,9 +104,9 @@ private fun ExerciseCreateObject.toInternal(): FhExercise = FhExercise(
     name = this.name ?: "",
     description = this.description ?: "",
     muscleGroup = this.muscleGroup.fromTransport(),
-    lastPerformed = this.lastPerformed?.let { getInstant(it) }!!,
-    nextReminder = this.nextReminder?.let { getInstant(it) }!!,
-    addedOn = this.addedOn?.let { getInstant(it) }!!,
+    lastPerformed = this.lastPerformed?.let { getInstant(it) } ?: Instant.NONE,
+    nextReminder = this.nextReminder?.let { getInstant(it) } ?: Instant.NONE,
+    addedOn = this.addedOn?.let { getInstant(it) } ?: Instant.NONE,
 )
 
 private fun ExerciseUpdateObject.toInternal(): FhExercise = FhExercise(
@@ -114,9 +114,9 @@ private fun ExerciseUpdateObject.toInternal(): FhExercise = FhExercise(
     name = this.name ?: "",
     description = this.description ?: "",
     muscleGroup = this.muscleGroup.fromTransport(),
-    lastPerformed = this.lastPerformed?.let { getInstant(it) }!!,
-    nextReminder = this.nextReminder?.let { getInstant(it) }!!,
-    addedOn = this.addedOn?.let { getInstant(it) }!!,
+    lastPerformed = this.lastPerformed?.let { getInstant(it) } ?: Instant.NONE,
+    nextReminder = this.nextReminder?.let { getInstant(it) } ?: Instant.NONE,
+    addedOn = this.addedOn?.let { getInstant(it) } ?: Instant.NONE,
     lock = lock.toExerciseLock(),
 )
 

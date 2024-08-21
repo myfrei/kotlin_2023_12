@@ -26,5 +26,7 @@ object FhExerciseStub {
         id = FhExerciseId(id),
         name = "$filter $id",
         description = "desc $filter $id",
+        importance = base.importance,
+        append = base.append
     )
 }
