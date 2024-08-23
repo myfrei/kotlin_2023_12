@@ -28,6 +28,11 @@ dependencies {
     // biz
     implementation(project(":fh-biz"))
 
+    //db-pg
+    implementation(project(":fh-repo-common"))
+    implementation(project(":fh-repo-stubs"))
+    implementation(project(":fh-repo-inmemory"))
+    implementation(project(":fh-repo-postgres"))
     // tests
     testImplementation(kotlin("test-junit5"))
     testImplementation(libs.spring.test)
