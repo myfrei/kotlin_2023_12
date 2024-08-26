@@ -65,14 +65,14 @@ private fun Set<FhExercisePermissionClient>.toTransportExercise(): Set<ExerciseP
     return result.takeIf { it.isNotEmpty() } as Set<ExercisePermissions>?
 }
 
-private fun FhExercisePermissionClient.toTransportExercise() = when (this) {
+internal fun FhExercisePermissionClient.toTransportExercise() = when (this) {
     FhExercisePermissionClient.READ -> ExercisePermissions.READ
     FhExercisePermissionClient.UPDATE -> ExercisePermissions.UPDATE
     FhExercisePermissionClient.REMIND -> FhExercisePermissionClient.REMIND
     FhExercisePermissionClient.DELETE -> ExercisePermissions.DELETE
 }
 
-private fun FhMuscleGroup.toTransportExercise(): MuscleGroup? = when (this) {
+internal fun FhMuscleGroup.toTransportExercise(): MuscleGroup? = when (this) {
     FhMuscleGroup.CHEST -> MuscleGroup.CHEST
     FhMuscleGroup.BACK -> MuscleGroup.BACK
     FhMuscleGroup.LEGS -> MuscleGroup.LEGS
@@ -82,19 +82,19 @@ private fun FhMuscleGroup.toTransportExercise(): MuscleGroup? = when (this) {
     FhMuscleGroup.NONE -> null
 }
 
-private fun List<FhError>.toTransportErrors(): List<Error>? = this
+internal fun List<FhError>.toTransportErrors(): List<Error>? = this
     .map { it.toTransportExercise() }
     .toList()
     .takeIf { it.isNotEmpty() }
 
-private fun FhError.toTransportExercise() = Error(
+internal fun FhError.toTransportExercise() = Error(
     code = code.takeIf { it.isNotBlank() },
     group = group.takeIf { it.isNotBlank() },
     field = field.takeIf { it.isNotBlank() },
     message = message.takeIf { it.isNotBlank() },
 )
 
-private fun FhState.toResult(): ResponseResult? = when (this) {
+internal fun FhState.toResult(): ResponseResult? = when (this) {
     FhState.RUNNING -> ResponseResult.SUCCESS
     FhState.FAILING -> ResponseResult.ERROR
     FhState.FINISHING -> ResponseResult.SUCCESS

@@ -1,5 +1,6 @@
 import kotlinx.datetime.Instant
 import models.*
+import repo.IRepoExercise
 import stubs.FhStubs
 
 data class FhContext(
@@ -24,4 +25,10 @@ data class FhContext(
     var exercisesResponse: MutableList<FhExercise> = mutableListOf(),
 
     var corSettings: FhCorSettings = FhCorSettings(),
+
+    var exerciseRepo: IRepoExercise = IRepoExercise.NONE,
+    var exerciseRepoRead: FhExercise = FhExercise(),
+    var exerciseRepoPrepare: FhExercise = FhExercise(),
+    var exerciseRepoDone: FhExercise = FhExercise(),
+    var exercisesRepoDone: MutableList<FhExercise> = mutableListOf(),
 )

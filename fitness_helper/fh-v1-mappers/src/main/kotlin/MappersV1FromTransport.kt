@@ -88,8 +88,9 @@ fun FhContext.fromTransport(request: ExerciseSearchRequest) {
 }
 
 private fun ExerciseSearchFilter?.toInternal(): FhExerciseFilter = FhExerciseFilter(
-    searchString = this?.searchString ?: ""
-)
+    searchString = this?.searchString ?: "",
+    ownerId = this?.ownerId?.let { FhUserId(it) } ?: FhUserId.NONE,
+    )
 
 private fun getInstant(timeString: String): Instant {
     val customFormat = DateTimeComponents.Format {

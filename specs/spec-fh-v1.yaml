@@ -300,6 +300,8 @@ components:
         searchString:
           type: string
           description: Поисковая строка, которая будет искаться в упражнениях
+        ownerId:
+          $ref: '#/components/schemas/UserId'
 
     ExerciseSearchRequest:
       allOf:
